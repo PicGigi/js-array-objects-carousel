@@ -30,15 +30,15 @@ const leftSlider = document.getElementById("left-slider");
 const rightSlider = document.getElementById("right-slider");
 const infoTitle = document.getElementById("info-title");
 const infoText = document.getElementById("info-text");
-infoTitle.innerHTML = images[0].title
-infoText.innerHTML = images[0].text
+infoTitle.innerHTML = images[0].title;
+infoText.innerHTML = images[0].text;
 
 // slider di sinistra
 
 for (i = 0; i < images.length; i++) {
     const singleImg = document.createElement("img");
     singleImg.src = `img/${images[i].image}`;
-    singleImg.classList.add('left-slider-img')
+    singleImg.classList.add('left-slider-img');
 
     if(i === 0){
         singleImg.classList.add('active');
@@ -52,7 +52,7 @@ for (i = 0; i < images.length; i++) {
 for (i = 0; i < images.length; i++) {
     const singleImg = document.createElement("img");
     singleImg.src = `img/${images[i].image}`;
-    singleImg.classList.add('right-slider-img')
+    singleImg.classList.add('right-slider-img');
 
     if(i === 0){
         singleImg.classList.add('selected');
@@ -80,8 +80,8 @@ function next() {
 
     listLeftImg[currentImg].classList.add('active');
     listRightImg[currentImg].classList.add('selected');
-    infoTitle.innerHTML = images[currentImg].title
-    infoText.innerHTML = images[currentImg].text
+    infoTitle.innerHTML = images[currentImg].title;
+    infoText.innerHTML = images[currentImg].text;
 }
 
 function previous() {
@@ -96,8 +96,8 @@ function previous() {
 
     listLeftImg[currentImg].classList.add('active');
     listRightImg[currentImg].classList.add('selected');
-    infoTitle.innerHTML = images[currentImg].title
-    infoText.innerHTML = images[currentImg].text
+    infoTitle.innerHTML = images[currentImg].title;
+    infoText.innerHTML = images[currentImg].text;
 }
 
 downButton.addEventListener('click', function(){
@@ -112,9 +112,10 @@ upButton.addEventListener('click', function(){
 
 const startStop = document.getElementById("start-stop");
 
-let autoSlide = setInterval(next, 1000)
+let autoSlide = setInterval(next, 1000);
 
 let onOff = 0;
+let leftRight = 0;
 
 startStop.addEventListener('click', function(){
     if(onOff % 2 === 0){
@@ -122,17 +123,20 @@ startStop.addEventListener('click', function(){
         startStop.innerHTML = "Avvia auto slider"
     }
     else if(onOff % 2 === 1){
-        autoSlide = setInterval(next, 1000);
-        startStop.innerHTML = "Stop auto slider"
+        if(leftRight %2 === 0){
+            autoSlide = setInterval(next, 1000);
+        }
+        else if(leftRight % 2 === 1){
+            autoSlide = setInterval(previous, 1000);
+        }
+        startStop.innerHTML = "Stop auto slider";
     }
     onOff++;
-})
+});
 
 // BOTTONE INVERT
 
 const invert = document.getElementById("invert");
-
-let leftRight = 0;
 
 invert.addEventListener('click', function(){
     if(leftRight % 2 === 0  &&  onOff % 2 === 0){
@@ -145,6 +149,4 @@ invert.addEventListener('click', function(){
         autoSlide = setInterval(next, 1000);
         leftRight++;
     }
-})
-
-
+});
