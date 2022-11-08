@@ -135,15 +135,16 @@ const invert = document.getElementById("invert");
 let leftRight = 0;
 
 invert.addEventListener('click', function(){
-    if(leftRight % 2 === 0){
+    if(leftRight % 2 === 0  &&  onOff % 2 === 0){
         clearInterval(autoSlide);
         autoSlide = setInterval(previous, 1000);
+        leftRight++;
     }
-    else if(leftRight % 2 === 1){
+    else if(leftRight % 2 === 1 &&  onOff % 2 === 0){
         clearInterval(autoSlide);
         autoSlide = setInterval(next, 1000);
+        leftRight++;
     }
-    leftRight++;
 })
 
 
