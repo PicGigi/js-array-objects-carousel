@@ -68,39 +68,48 @@ const listRightImg = document.querySelectorAll('.right-slider-img');
 const upButton = document.getElementById("up-button");
 const downButton = document.getElementById("down-button");
 
-downButton.addEventListener('click',
-    function(){
-        listLeftImg[currentImg].classList.remove('active');
-        listRightImg[currentImg].classList.remove('selected');
-        
-        currentImg++;
+function next() {
+    listLeftImg[currentImg].classList.remove('active');
+    listRightImg[currentImg].classList.remove('selected');
+    
+    currentImg++;
 
-        if(currentImg === (images.length)){
-            currentImg = 0;
-        }
-
-        listLeftImg[currentImg].classList.add('active');
-        listRightImg[currentImg].classList.add('selected');
-        infoTitle.innerHTML = images[currentImg].title
-        infoText.innerHTML = images[currentImg].text
-
+    if(currentImg === (images.length)){
+        currentImg = 0;
     }
-);
 
-upButton.addEventListener('click',
-    function(){
-        listLeftImg[currentImg].classList.remove('active');
-        listRightImg[currentImg].classList.remove('selected');
+    listLeftImg[currentImg].classList.add('active');
+    listRightImg[currentImg].classList.add('selected');
+    infoTitle.innerHTML = images[currentImg].title
+    infoText.innerHTML = images[currentImg].text
+}
 
-        if(currentImg === 0){
-            currentImg = images.length;
-        }
+function previous() {
+    listLeftImg[currentImg].classList.remove('active');
+    listRightImg[currentImg].classList.remove('selected');
 
-        currentImg--;
-
-        listLeftImg[currentImg].classList.add('active');
-        listRightImg[currentImg].classList.add('selected');
-        infoTitle.innerHTML = images[currentImg].title
-        infoText.innerHTML = images[currentImg].text
+    if(currentImg === 0){
+        currentImg = images.length;
     }
-);
+
+    currentImg--;
+
+    listLeftImg[currentImg].classList.add('active');
+    listRightImg[currentImg].classList.add('selected');
+    infoTitle.innerHTML = images[currentImg].title
+    infoText.innerHTML = images[currentImg].text
+}
+
+downButton.addEventListener('click', function(){
+    next();
+});
+
+upButton.addEventListener('click', function(){
+    previous();
+});
+
+
+
+const autoSlide = setInterval(next, 3000)
+
+
