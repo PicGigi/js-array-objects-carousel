@@ -108,8 +108,42 @@ upButton.addEventListener('click', function(){
     previous();
 });
 
+// BOTTONE START/STOP
 
+const startStop = document.getElementById("start-stop");
 
-const autoSlide = setInterval(next, 3000)
+let autoSlide = setInterval(next, 1000)
+
+let onOff = 0;
+
+startStop.addEventListener('click', function(){
+    if(onOff % 2 === 0){
+        clearInterval(autoSlide);
+        startStop.innerHTML = "Avvia auto slider"
+    }
+    else if(onOff % 2 === 1){
+        autoSlide = setInterval(next, 1000);
+        startStop.innerHTML = "Stop auto slider"
+    }
+    onOff++;
+})
+
+// BOTTONE INVERT
+
+const invert = document.getElementById("invert");
+
+let leftRight = 0;
+
+invert.addEventListener('click', function(){
+    if(leftRight % 2 === 0){
+        clearInterval(autoSlide);
+        autoSlide = setInterval(previous, 1000);
+    }
+    else if(leftRight % 2 === 1){
+        clearInterval(autoSlide);
+        autoSlide = setInterval(next, 1000);
+    }
+    leftRight++;
+})
 
 
